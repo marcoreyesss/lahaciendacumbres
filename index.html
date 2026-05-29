@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Hacienda Cumbres – Restaurante Mexicano</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --terracotta:#B85C38;
+  --terracotta-dark:#8C3E20;
+  --terracotta-light:#E8956D;
+  --cream:#F5EDD8;
+  --cream-dark:#EBD9B4;
+  --verde:#3A6B35;
+  --oro:#C4922A;
+  --oro-light:#E0B04A;
+  --dark:#1E1410;
+  --text:#3D2B1F;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Cormorant Garamond', serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 4rem;
+  background:rgba(30,20,16,.95);
+  backdrop-filter:blur(10px);
+}
+
+.nav-logo{
+  color:var(--oro-light);
+  text-decoration:none;
+  font-family:'Playfair Display', serif;
+  font-size:1.3rem;
+}
+
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:2rem;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--cream);
+  font-family:'Josefin Sans', sans-serif;
+  font-size:.75rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.nav-links a:hover{
+  color:var(--oro-light);
+}
+
+/* HERO */
+
+#hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  background:
+  linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+  url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1974&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  color:white;
+  padding:2rem;
+}
+
+.hero-tag{
+  font-family:'Josefin Sans', sans-serif;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--oro-light);
+  margin-bottom:1rem;
+  font-size:.75rem;
+}
+
+.hero-title{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(3rem,8vw,7rem);
+  line-height:.95;
+}
+
+.hero-title em{
+  color:var(--terracotta-light);
+  font-style:italic;
+}
+
+.hero-subtitle{
+  max-width:700px;
+  margin-top:1.5rem;
+  margin-bottom:2.5rem;
+  font-size:1.25rem;
+  color:var(--cream-dark);
+}
+
+.hero-buttons{
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.btn-primary,
+.btn-outline{
+  padding:1rem 2.2rem;
+  text-decoration:none;
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:.75rem;
+  transition:.25s;
+  border:none;
+  cursor:pointer;
+}
+
+.btn-primary{
+  background:var(--oro-light);
+  color:black;
+}
+
+.btn-primary:hover{
+  background:var(--terracotta-light);
+}
+
+.btn-outline{
+  border:1px solid rgba(255,255,255,.4);
+  color:white;
+}
+
+.btn-outline:hover{
+  border-color:var(--oro-light);
+  color:var(--oro-light);
+}
+
+/* SECTIONS */
+
+section{
+  padding:6rem 4rem;
+}
+
+.section-label{
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.25em;
+  color:var(--terracotta);
+  margin-bottom:1rem;
+  font-size:.75rem;
+}
+
+.section-title{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(2rem,5vw,4rem);
+  margin-bottom:2rem;
+}
+
+.section-title em{
+  color:var(--terracotta);
+}
+
+/* ABOUT */
+
+#about{
+  background:var(--dark);
+  color:white;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+}
+
+.about-image img{
+  width:100%;
+  border-radius:10px;
+}
+
+.about-text p{
+  line-height:1.9;
+  margin-bottom:1rem;
+  color:var(--cream-dark);
+  font-size:1.1rem;
+}
+
+/* MENU */
+
+#menu{
+  background:var(--dark);
+}
+
+#menu .section-title{
+  color:white;
+}
+
+.menu-subtitle{
+  color:rgba(255,255,255,.6);
+  margin-bottom:4rem;
+  font-size:1.1rem;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+}
+
+.menu-category{
+  border-top:1px solid rgba(255,255,255,.15);
+  padding-top:2rem;
+}
+
+.menu-cat-title{
+  color:var(--oro-light);
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  margin-bottom:1.5rem;
+  font-size:.8rem;
+}
+
+.menu-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:1rem;
+  color:white;
+}
+
+.menu-item-name{
+  font-size:1.1rem;
+}
+
+.menu-item-dots{
+  flex:1;
+  border-bottom:1px dotted rgba(255,255,255,.25);
+  margin:0 .8rem .4rem;
+}
+
+.menu-item-price{
+  color:var(--oro-light);
+  font-family:'Josefin Sans', sans-serif;
+}
+
+/* CONTACT */
+
+#contact{
+  background:var(--cream);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+}
+
+.info-block{
+  margin-bottom:2rem;
+}
+
+.info-label{
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  color:var(--terracotta);
+  margin-bottom:.5rem;
+  font-size:.75rem;
+}
+
+.info-value{
+  font-size:1.1rem;
+  line-height:1.8;
+}
+
+.social-links{
+  display:flex;
+  gap:1rem;
+  margin-top:2rem;
+}
+
+.social-link{
+  text-decoration:none;
+  border:1px solid rgba(0,0,0,.2);
+  padding:.7rem 1.3rem;
+  color:var(--dark);
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase;
+  font-size:.75rem;
+}
+
+.social-link:hover{
+  border-color:var(--oro);
+  color:var(--terracotta);
+}
+
+/* WHATSAPP FLOAT BUTTON */
+
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 18px;
+  border-radius:50px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-weight:bold;
+  z-index:9999;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* FOOTER */
+
+footer{
+  background:#111;
+  color:rgba(255,255,255,.5);
+  padding:2rem;
+  text-align:center;
+  font-family:'Josefin Sans', sans-serif;
+  font-size:.75rem;
+  letter-spacing:.15em;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  nav{
+    padding:1rem 1.5rem;
+  }
+
+  .nav-links{
+    gap:1rem;
+  }
+
+  section{
+    padding:5rem 1.5rem;
+  }
+
+  #about,
+  #contact,
+  .menu-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-title{
+    font-size:4rem;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<nav>
+
+  <a href="#hero" class="nav-logo">
+    La Hacienda · Cumbres
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section id="hero">
+
+  <p class="hero-tag">
+    Monterrey · Nuevo León
+  </p>
+
+  <h1 class="hero-title">
+    La <em>Hacienda</em><br>
+    Cumbres
+  </h1>
+
+  <p class="hero-subtitle">
+    Cocina norteña, tacos y parrilladas en el corazón de Cumbres
+  </p>
+
+  <div class="hero-buttons">
+
+    <a href="https://wa.me/528148236549"
+       target="_blank"
+       class="btn-primary">
+       Reservar Mesa
+    </a>
+
+    <a href="#menu" class="btn-outline">
+      Ver Menú
+    </a>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop" alt="La Hacienda">
+  </div>
+
+  <div class="about-text">
+
+    <p class="section-label">
+      Quiénes Somos
+    </p>
+
+    <h2 class="section-title">
+      Tradición <em>Mexicana</em>
+    </h2>
+
+    <p>
+      En La Hacienda Cumbres encontrarás auténtica cocina mexicana,
+      tacos, cortes y parrilladas servidas en un ambiente cálido y familiar.
+    </p>
+
+    <p>
+      Nuestro patio colonial y nuestro sabor norteño hacen de cada visita
+      una experiencia especial para disfrutar con familia y amigos.
+    </p>
+
+  </div>
+
+</section>
+
+<!-- MENU -->
+
+<section id="menu">
+
+  <p class="section-label">
+    Nuestra Carta
+  </p>
+
+  <h2 class="section-title">
+    Sabores que <em>enamoran</em>
+  </h2>
+
+  <p class="menu-subtitle">
+    Algunos de nuestros platillos más populares
+  </p>
+
+  <div class="menu-grid">
+
+    <!-- ENTRADAS -->
+
+    <div class="menu-category">
+
+      <p class="menu-cat-title">
+        Entradas
+      </p>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Guacamole</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$169</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Queso Flameado con Chorizo</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$169</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Tatemado de Panela</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$179</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Costillas Habanero</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$190</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Palomitas de Coliflor</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$180</span>
+      </div>
+
+    </div>
+
+    <!-- NUESTRA COCINA -->
+
+    <div class="menu-category">
+
+      <p class="menu-cat-title">
+        Nuestra Cocina
+      </p>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Cortadillo de Rancho</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$269</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Arrachera</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$380</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Ribeye</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$390</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Asado de Puerco</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$180</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Comida del Día</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$159</span>
+      </div>
+
+    </div>
+
+    <!-- TACOS -->
+
+    <div class="menu-category">
+
+      <p class="menu-cat-title">
+        Tacos y Más
+      </p>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Tacos de Romero</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$190</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Gaoneras</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$180</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Volcanes</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$180</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Tacos Vampiro</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$130</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Cachateadas</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$150+</span>
+      </div>
+
+    </div>
+
+    <!-- PARRILLADAS -->
+
+    <div class="menu-category">
+
+      <p class="menu-cat-title">
+        Parrilladas
+      </p>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Parrillada La Hacienda (4p)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$880</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Parrillada Norteña (2p)</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$465</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-item-name">Cazuela de Alambre</span>
+        <span class="menu-item-dots"></span>
+        <span class="menu-item-price">$390</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+  <div>
+
+    <p class="section-label">
+      Contacto
+    </p>
+
+    <h2 class="section-title">
+      Visítanos <em>Hoy</em>
+    </h2>
+
+    <div class="info-block">
+
+      <p class="info-label">
+        Dirección
+      </p>
+
+      <p class="info-value">
+        Av Paseo de los Leones 1150<br>
+        Cumbres Elite 2do Sector<br>
+        Monterrey, Nuevo León
+      </p>
+
+    </div>
+
+    <div class="info-block">
+
+      <p class="info-label">
+        Horarios
+      </p>
+
+      <p class="info-value">
+        Miércoles – Sábado: 1PM – 11PM<br>
+        Domingo: 1PM – 6PM
+      </p>
+
+    </div>
+
+    <div class="info-block">
+
+      <p class="info-label">
+        Teléfono
+      </p>
+
+      <p class="info-value">
+        <a href="tel:8148236549">
+          81 4823 6549
+        </a>
+      </p>
+
+    </div>
+
+    <div style="margin-top:2rem;">
+
+      <a href="https://wa.me/528148236549"
+         target="_blank"
+         class="btn-primary">
+         Reservar por WhatsApp
+      </a>
+
+    </div>
+
+    <div class="social-links">
+
+      <a href="https://www.instagram.com/lahaciendacumbres/"
+         target="_blank"
+         class="social-link">
+         Instagram
+      </a>
+
+      <a href="https://www.facebook.com/lahaciendacumbres/"
+         target="_blank"
+         class="social-link">
+         Facebook
+      </a>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <iframe
+      src="https://maps.google.com/maps?q=La%20Hacienda%20Cumbres%20Monterrey&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      width="100%"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+
+  </div>
+
+</section>
+
+<!-- FLOATING WHATSAPP -->
+
+<a href="https://wa.me/528148236549"
+   target="_blank"
+   class="whatsapp-float">
+   WhatsApp
+</a>
+
+<!-- FOOTER -->
+
+<footer>
+  © 2025 La Hacienda Cumbres · Monterrey, Nuevo León
+</footer>
+
+</body>
+</html>
