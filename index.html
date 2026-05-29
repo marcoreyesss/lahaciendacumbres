@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -89,7 +90,8 @@ nav{
   align-items:center;
   flex-direction:column;
   text-align:center;
-  background:linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+  background:
+  linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
   url('https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1974&auto=format&fit=crop');
   background-size:cover;
   background-position:center;
@@ -141,6 +143,8 @@ nav{
   letter-spacing:.15em;
   font-size:.75rem;
   transition:.25s;
+  border:none;
+  cursor:pointer;
 }
 
 .btn-primary{
@@ -316,6 +320,23 @@ section{
   color:var(--terracotta);
 }
 
+/* WHATSAPP FLOAT BUTTON */
+
+.whatsapp-float{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 18px;
+  border-radius:50px;
+  text-decoration:none;
+  font-family:sans-serif;
+  font-weight:bold;
+  z-index:9999;
+  box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
 /* FOOTER */
 
 footer{
@@ -354,6 +375,7 @@ footer{
     font-size:4rem;
   }
 }
+
 </style>
 </head>
 
@@ -362,13 +384,17 @@ footer{
 <!-- NAV -->
 
 <nav>
-  <a href="#hero" class="nav-logo">La Hacienda · Cumbres</a>
+
+  <a href="#hero" class="nav-logo">
+    La Hacienda · Cumbres
+  </a>
 
   <ul class="nav-links">
     <li><a href="#about">Nosotros</a></li>
     <li><a href="#menu">Menú</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
+
 </nav>
 
 <!-- HERO -->
@@ -414,7 +440,9 @@ footer{
 
   <div class="about-text">
 
-    <p class="section-label">Quiénes Somos</p>
+    <p class="section-label">
+      Quiénes Somos
+    </p>
 
     <h2 class="section-title">
       Tradición <em>Mexicana</em>
@@ -438,7 +466,9 @@ footer{
 
 <section id="menu">
 
-  <p class="section-label">Nuestra Carta</p>
+  <p class="section-label">
+    Nuestra Carta
+  </p>
 
   <h2 class="section-title">
     Sabores que <em>enamoran</em>
@@ -454,7 +484,9 @@ footer{
 
     <div class="menu-category">
 
-      <p class="menu-cat-title">Entradas</p>
+      <p class="menu-cat-title">
+        Entradas
+      </p>
 
       <div class="menu-item">
         <span class="menu-item-name">Guacamole</span>
@@ -492,7 +524,9 @@ footer{
 
     <div class="menu-category">
 
-      <p class="menu-cat-title">Nuestra Cocina</p>
+      <p class="menu-cat-title">
+        Nuestra Cocina
+      </p>
 
       <div class="menu-item">
         <span class="menu-item-name">Cortadillo de Rancho</span>
@@ -530,7 +564,9 @@ footer{
 
     <div class="menu-category">
 
-      <p class="menu-cat-title">Tacos y Más</p>
+      <p class="menu-cat-title">
+        Tacos y Más
+      </p>
 
       <div class="menu-item">
         <span class="menu-item-name">Tacos de Romero</span>
@@ -568,7 +604,9 @@ footer{
 
     <div class="menu-category">
 
-      <p class="menu-cat-title">Parrilladas</p>
+      <p class="menu-cat-title">
+        Parrilladas
+      </p>
 
       <div class="menu-item">
         <span class="menu-item-name">Parrillada La Hacienda (4p)</span>
@@ -600,39 +638,53 @@ footer{
 
   <div>
 
-    <p class="section-label">Contacto</p>
+    <p class="section-label">
+      Contacto
+    </p>
 
     <h2 class="section-title">
       Visítanos <em>Hoy</em>
     </h2>
 
     <div class="info-block">
-      <p class="info-label">Dirección</p>
+
+      <p class="info-label">
+        Dirección
+      </p>
 
       <p class="info-value">
         Av Paseo de los Leones 1150<br>
         Cumbres Elite 2do Sector<br>
         Monterrey, Nuevo León
       </p>
+
     </div>
 
     <div class="info-block">
-      <p class="info-label">Horarios</p>
+
+      <p class="info-label">
+        Horarios
+      </p>
 
       <p class="info-value">
         Miércoles – Sábado: 1PM – 11PM<br>
         Domingo: 1PM – 6PM
       </p>
+
     </div>
 
     <div class="info-block">
-      <p class="info-label">Teléfono</p>
+
+      <p class="info-label">
+        Teléfono
+      </p>
 
       <p class="info-value">
         <a href="tel:8148236549">
           81 4823 6549
         </a>
       </p>
+
     </div>
 
     <div style="margin-top:2rem;">
@@ -646,6 +698,12 @@ footer{
     </div>
 
     <div class="social-links">
+
+      <a href="https://www.instagram.com/lahaciendacumbres/"
+         target="_blank"
+         class="social-link">
+         Instagram
+      </a>
 
       <a href="https://www.facebook.com/lahaciendacumbres/"
          target="_blank"
@@ -671,6 +729,14 @@ footer{
   </div>
 
 </section>
+
+<!-- FLOATING WHATSAPP -->
+
+<a href="https://wa.me/528148236549"
+   target="_blank"
+   class="whatsapp-float">
+   WhatsApp
+</a>
 
 <!-- FOOTER -->
 
