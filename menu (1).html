@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="./logo.png">
+<title>Menú – La Hacienda Cumbres</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --terracotta:#B85C38; --terracotta-dark:#8C3E20; --terracotta-light:#E8956D;
+  --cream:#F5EDD8; --cream-dark:#EBD9B4; --verde:#3A6B35;
+  --oro:#C4922A; --oro-light:#E0B04A; --dark:#1E1410; --text:#3D2B1F;
+}
+
+html{ scroll-behavior:smooth; }
+body{ font-family:'Cormorant Garamond', serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+/* ─── NAV ─── */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 4rem; background:rgba(30,20,16,.95); backdrop-filter:blur(10px);
+}
+.nav-logo{ color:var(--oro-light); text-decoration:none; font-family:'Playfair Display', serif; font-size:1.3rem; }
+.nav-links{ list-style:none; display:flex; gap:2rem; }
+.nav-links a{
+  text-decoration:none; color:var(--cream); font-family:'Josefin Sans', sans-serif;
+  font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; transition:.2s;
+}
+.nav-links a:hover{ color:var(--oro-light); }
+.nav-links a.active{ color:var(--oro-light); border-bottom:1px solid var(--oro-light); padding-bottom:2px; }
+
+/* ─── HERO MENÚ ─── */
+#hero-menu{
+  min-height:50vh; display:flex; align-items:flex-end; justify-content:flex-start;
+  padding:6rem 4rem 4rem; position:relative; overflow:hidden;
+}
+/* ════════════════════════════════════════════════
+   🖼️  IMAGEN DE FONDO – PÁGINA MENÚ
+   Usa una foto de platillos, parrilla o ambiente.
+   Tamaño recomendado: 1920×900px
+   ════════════════════════════════════════════════ */
+#hero-menu::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.75) 0%, rgba(0,0,0,.35) 100%),
+    url('AQUI_VA_FOTO_MENU.jpg');
+  background-size:cover; background-position:center; z-index:1;
+}
+#hero-menu > *{ position:relative; z-index:2; }
+
+/* ─── HERO TEXTOS ─── */
+.hero-tag{
+  font-family:'Josefin Sans', sans-serif; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--oro-light); margin-bottom:1rem; font-size:.75rem;
+}
+.page-title{
+  font-family:'Playfair Display', serif; font-size:clamp(3rem,7vw,6rem);
+  color:white; line-height:.95;
+}
+.page-title em{ color:var(--terracotta-light); font-style:italic; }
+
+/* ─── SECCIÓN MENÚ ─── */
+#menu-content{
+  background:var(--dark); padding:6rem 4rem;
+}
+.section-label{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.25em; color:var(--terracotta-light); margin-bottom:1rem; font-size:.75rem;
+}
+.section-title{
+  font-family:'Playfair Display', serif; font-size:clamp(2rem,4vw,3.5rem);
+  margin-bottom:2.5rem; color:var(--cream);
+}
+.section-title em{ color:var(--oro-light); font-style:italic; }
+
+/* ─── TABS ─── */
+.menu-tabs{
+  display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:3rem;
+  border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:0;
+}
+.menu-tab{
+  background:none; border:none; cursor:pointer; padding:.8rem 1.5rem;
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.12em; font-size:.7rem; color:rgba(245,237,216,.5);
+  transition:.25s; border-bottom:2px solid transparent; margin-bottom:-1px;
+}
+.menu-tab:hover{ color:var(--cream); }
+.menu-tab.active{ color:var(--oro-light); border-bottom:2px solid var(--oro-light); }
+
+/* ─── PANELS ─── */
+.menu-panel{ display:none; }
+.menu-panel.active{ display:block; }
+
+/* ─── GRID DE PLATOS ─── */
+.platos-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+  background:rgba(255,255,255,.06);
+}
+.plato-card{
+  padding:2rem; background:var(--dark); transition:.3s;
+}
+.plato-card:hover{ background:#2A1E18; }
+
+.plato-info{}
+.plato-header{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:.5rem; gap:1rem;
+}
+.plato-nombre{
+  font-family:'Playfair Display', serif; font-size:1.2rem; color:var(--cream);
+}
+.plato-precio{
+  font-family:'Josefin Sans', sans-serif; font-size:.9rem;
+  color:var(--oro-light); white-space:nowrap;
+}
+.plato-desc{ font-size:.95rem; color:rgba(245,237,216,.5); line-height:1.6; }
+.plato-badge{
+  display:inline-block; margin-top:.6rem;
+  font-family:'Josefin Sans', sans-serif; font-size:.6rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--terracotta-light);
+  border:1px solid rgba(232,149,109,.3); padding:.25rem .6rem;
+}
+
+/* ─── BEBIDAS (lista simple) ─── */
+.bebidas-list{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:0;
+}
+.bebida-item{
+  display:flex; justify-content:space-between; align-items:baseline;
+  padding:1rem 0; border-bottom:1px solid rgba(255,255,255,.07); gap:1rem;
+}
+.bebida-nombre{ font-family:'Playfair Display', serif; font-size:1.05rem; color:var(--cream); }
+.bebida-dots{ flex:1; border-bottom:1px dotted rgba(255,255,255,.15); margin-bottom:3px; }
+.bebida-precio{ font-family:'Josefin Sans', sans-serif; font-size:.85rem; color:var(--oro-light); white-space:nowrap; }
+
+/* ─── NOTA ALERGENOS ─── */
+.nota-alergenos{
+  margin-top:4rem; padding:1.5rem; border:1px solid rgba(255,255,255,.08);
+  font-family:'Josefin Sans', sans-serif; font-size:.7rem; letter-spacing:.08em;
+  color:rgba(245,237,216,.3); line-height:1.8;
+}
+
+/* ─── CTA ─── */
+#cta-menu{
+  background:var(--terracotta-dark); text-align:center; padding:5rem 4rem;
+}
+#cta-menu h2{ font-family:'Playfair Display', serif; font-size:clamp(2rem,4vw,3rem); color:var(--cream); margin-bottom:1rem; }
+#cta-menu p{ color:var(--cream-dark); font-size:1.1rem; margin-bottom:2.5rem; }
+.btn-cream{
+  padding:1rem 2.5rem; text-decoration:none; display:inline-block;
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.15em; font-size:.75rem; transition:.25s;
+  background:var(--cream); color:var(--terracotta-dark); border:none; cursor:pointer;
+}
+.btn-cream:hover{ background:var(--cream-dark); }
+
+/* ─── WHATSAPP ─── */
+.whatsapp-float{
+  position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
+  padding:14px 18px; border-radius:50px; text-decoration:none;
+  font-family:sans-serif; font-weight:bold; z-index:9999; box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#111; color:rgba(255,255,255,.5); padding:2rem; text-align:center;
+  font-family:'Josefin Sans', sans-serif; font-size:.75rem; letter-spacing:.15em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{ padding:1rem 1.5rem; } .nav-links{ gap:1rem; }
+  section{ padding:4rem 1.5rem; }
+  #menu-content{ padding:3rem 1.5rem; }
+  .platos-grid{ grid-template-columns:1fr; }
+  .bebidas-list{ grid-template-columns:1fr; }
+  #hero-menu{ padding:5rem 1.5rem 3rem; }
+  .menu-tabs{ gap:.25rem; }
+  .menu-tab{ padding:.65rem 1rem; font-size:.65rem; }
+  #tab-bebidas > div{ grid-template-columns:1fr !important; gap:2rem !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">La Hacienda · Cumbres</a>
+  <ul class="nav-links">
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="menu.html" class="active">Menú</a></li>
+    <li><a href="index.html#reservar">Reservar</a></li>
+    <li><a href="index.html#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<!-- ─── HERO ─── -->
+<div id="hero-menu">
+  <div>
+    <p class="hero-tag">Nuestra Carta</p>
+    <h1 class="page-title">Sabores que <em>enamoran</em></h1>
+  </div>
+</div>
+
+
+<!-- ─── MENÚ PRINCIPAL ─── -->
+<section id="menu-content">
+
+  <p class="section-label">Explora nuestra carta</p>
+  <h2 class="section-title">Todo lo que <em>ofrecemos</em></h2>
+
+  <!-- TABS -->
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="showTab('entradas')">Entradas</button>
+    <button class="menu-tab" onclick="showTab('cocina')">Nuestra Cocina</button>
+    <button class="menu-tab" onclick="showTab('tacos')">Tacos y Más</button>
+    <button class="menu-tab" onclick="showTab('parrilladas')">Parrilladas</button>
+    <button class="menu-tab" onclick="showTab('bebidas')">Bebidas</button>
+  </div>
+
+
+  <!-- ══ ENTRADAS ══ -->
+  <div class="menu-panel active" id="tab-entradas">
+    <div class="platos-grid">
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Guacamole</span>
+            <span class="plato-precio">$169</span>
+          </div>
+          <p class="plato-desc">Aguacate fresco preparado al momento, jitomate, cebolla, cilantro y limón. Servido con totopos artesanales.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Queso Flameado con Chorizo</span>
+            <span class="plato-precio">$169</span>
+          </div>
+          <p class="plato-desc">Queso asadero fundido con chorizo norteño, acompañado de tortillas recién hechas.</p>
+          <span class="plato-badge">⭐ Favorito</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Tatemado de Panela</span>
+            <span class="plato-precio">$179</span>
+          </div>
+          <p class="plato-desc">Queso panela asado en comal con especias, servido con pico de gallo y totopos.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Costillas Habanero</span>
+            <span class="plato-precio">$190</span>
+          </div>
+          <p class="plato-desc">Costillas de cerdo en salsa habanero con miel, acompañadas de pan tostado.</p>
+          <span class="plato-badge">🌶 Picante</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Palomitas de Coliflor</span>
+            <span class="plato-precio">$180</span>
+          </div>
+          <p class="plato-desc">Coliflor rebozada y frita con salsa de la casa. Opción vegetariana.</p>
+          <span class="plato-badge">🌿 Vegetariano</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══ COCINA ══ -->
+  <div class="menu-panel" id="tab-cocina">
+    <div class="platos-grid">
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Cortadillo de Rancho</span>
+            <span class="plato-precio">$269</span>
+          </div>
+          <p class="plato-desc">Carne de res en trozos guisada con chile colorado, cebolla y especias. Servida con arroz y frijoles.</p>
+          <span class="plato-badge">⭐ Favorito</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Arrachera</span>
+            <span class="plato-precio">$380</span>
+          </div>
+          <p class="plato-desc">Arrachera marinada a la plancha, servida con guarnición de nopales, cebollitas y tortillas.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Ribeye</span>
+            <span class="plato-precio">$390</span>
+          </div>
+          <p class="plato-desc">Corte ribeye de 12 oz a tu término favorito, acompañado de papas rústicas y ensalada.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Asado de Puerco</span>
+            <span class="plato-precio">$180</span>
+          </div>
+          <p class="plato-desc">Tradicional guiso norteño de cerdo en chile rojo, servido con arroz y tortillas de maíz.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Comida del Día</span>
+            <span class="plato-precio">$159</span>
+          </div>
+          <p class="plato-desc">Sopa, guiso del día, arroz, frijoles y bebida. Pregunta al mesero por la selección del día.</p>
+          <span class="plato-badge">🗓 Varía diario</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══ TACOS ══ -->
+  <div class="menu-panel" id="tab-tacos">
+    <div class="platos-grid">
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Tacos de Romero</span>
+            <span class="plato-precio">$190</span>
+          </div>
+          <p class="plato-desc">Orden de 3 tacos de carne aromatizada con romero, cebolla caramelizada y salsa verde.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Gaoneras</span>
+            <span class="plato-precio">$180</span>
+          </div>
+          <p class="plato-desc">Tacos de rib eye en tortilla de harina, con rajas de chile y guacamole.</p>
+          <span class="plato-badge">⭐ Favorito</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Volcanes</span>
+            <span class="plato-precio">$180</span>
+          </div>
+          <p class="plato-desc">Tostadas con frijoles, carne, queso derretido y salsa al gusto.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Tacos Vampiro</span>
+            <span class="plato-precio">$130</span>
+          </div>
+          <p class="plato-desc">Tacos en tortilla tostada con carne, queso asadero y salsa de la casa.</p>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Cachateadas</span>
+            <span class="plato-precio">$150+</span>
+          </div>
+          <p class="plato-desc">Tortillas dobles rellenas al gusto. Pregunta al mesero por los rellenos del día.</p>
+          <span class="plato-badge">🗓 Varía diario</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══ PARRILLADAS ══ -->
+  <div class="menu-panel" id="tab-parrilladas">
+    <div class="platos-grid">
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Parrillada La Hacienda</span>
+            <span class="plato-precio">$880</span>
+          </div>
+          <p class="plato-desc">Selección de cortes y carnes para 4 personas: arrachera, costilla, chorizo norteño, cebollitas, nopales y tortillas.</p>
+          <span class="plato-badge">👥 Para 4 personas</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Parrillada Norteña</span>
+            <span class="plato-precio">$465</span>
+          </div>
+          <p class="plato-desc">Arrachera y costillas a la brasa para 2 personas con guarnición completa y tortillas.</p>
+          <span class="plato-badge">👥 Para 2 personas</span>
+        </div>
+      </div>
+
+      <div class="plato-card">
+        <div class="plato-info">
+          <div class="plato-header">
+            <span class="plato-nombre">Cazuela de Alambre</span>
+            <span class="plato-precio">$390</span>
+          </div>
+          <p class="plato-desc">Carne a la plancha con pimientos, cebolla, tocino y queso derretido. Servido directo en cazuela.</p>
+          <span class="plato-badge">⭐ Favorito</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══ BEBIDAS ══ -->
+  <div class="menu-panel" id="tab-bebidas">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:3rem;">
+
+      <div>
+        <p style="font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:.7rem;color:var(--oro);margin-bottom:1.5rem;">Sin Alcohol</p>
+        <div class="bebidas-list" style="grid-template-columns:1fr;">
+          <div class="bebida-item"><span class="bebida-nombre">Agua Fresca del día</span><span class="bebida-dots"></span><span class="bebida-precio">$55</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Limonada natural</span><span class="bebida-dots"></span><span class="bebida-precio">$65</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Jamaica</span><span class="bebida-dots"></span><span class="bebida-precio">$55</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Horchata</span><span class="bebida-dots"></span><span class="bebida-precio">$55</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Refresco lata</span><span class="bebida-dots"></span><span class="bebida-precio">$45</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Agua mineral</span><span class="bebida-dots"></span><span class="bebida-precio">$40</span></div>
+        </div>
+      </div>
+
+      <div>
+        <p style="font-family:'Josefin Sans',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:.7rem;color:var(--oro);margin-bottom:1.5rem;">Con Alcohol</p>
+        <div class="bebidas-list" style="grid-template-columns:1fr;">
+          <div class="bebida-item"><span class="bebida-nombre">Margarita de la Casa</span><span class="bebida-dots"></span><span class="bebida-precio">$130</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Michelada</span><span class="bebida-dots"></span><span class="bebida-precio">$95</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Chelada</span><span class="bebida-dots"></span><span class="bebida-precio">$80</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Mezcal Artesanal</span><span class="bebida-dots"></span><span class="bebida-precio">$160</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Cerveza nacional</span><span class="bebida-dots"></span><span class="bebida-precio">$65</span></div>
+          <div class="bebida-item"><span class="bebida-nombre">Cerveza importada</span><span class="bebida-dots"></span><span class="bebida-precio">$85</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="nota-alergenos">
+    ⚠️ Precios incluyen IVA. Carta sujeta a cambios de temporada.<br>
+    Si tienes alguna alergia o restricción alimentaria, infórmale a tu mesero antes de ordenar.<br>
+    Para grupos de más de 8 personas se aplica cargo por servicio del 10%.
+  </div>
+
+</section>
+
+
+<!-- ─── CTA ─── -->
+<section id="cta-menu">
+  <h2>¿Todo listo para ordenar?</h2>
+  <p>Reserva tu mesa y disfruta de nuestro menú completo.</p>
+  <a href="index.html#reservar" class="btn-cream">Reservar una Mesa</a>
+</section>
+
+
+<!-- ─── WHATSAPP ─── -->
+<a href="https://wa.me/528148236549" target="_blank" class="whatsapp-float">WhatsApp</a>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  © 2025 La Hacienda Cumbres · Monterrey, Nuevo León
+</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

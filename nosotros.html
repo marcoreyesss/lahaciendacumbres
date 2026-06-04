@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="./logo.png">
+<title>Nosotros – La Hacienda Cumbres</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --terracotta:#B85C38; --terracotta-dark:#8C3E20; --terracotta-light:#E8956D;
+  --cream:#F5EDD8; --cream-dark:#EBD9B4; --verde:#3A6B35;
+  --oro:#C4922A; --oro-light:#E0B04A; --dark:#1E1410; --text:#3D2B1F;
+}
+
+html{ scroll-behavior:smooth; }
+body{ font-family:'Cormorant Garamond', serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+/* ─── NAV ─── */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 4rem; background:rgba(30,20,16,.95); backdrop-filter:blur(10px);
+}
+.nav-logo{ color:var(--oro-light); text-decoration:none; font-family:'Playfair Display', serif; font-size:1.3rem; }
+.nav-links{ list-style:none; display:flex; gap:2rem; }
+.nav-links a{
+  text-decoration:none; color:var(--cream); font-family:'Josefin Sans', sans-serif;
+  font-size:.75rem; letter-spacing:.15em; text-transform:uppercase; transition:.2s;
+}
+.nav-links a:hover{ color:var(--oro-light); }
+.nav-links a.active{ color:var(--oro-light); border-bottom:1px solid var(--oro-light); padding-bottom:2px; }
+
+/* ─── HERO NOSOTROS ─── */
+#hero-nosotros{
+  min-height:55vh; display:flex; align-items:flex-end; justify-content:flex-start;
+  padding:6rem 4rem 4rem; position:relative; overflow:hidden;
+}
+
+/* ════════════════════════════════════════════════
+   🖼️  IMAGEN DE FONDO – PÁGINA NOSOTROS
+   Usa una foto del interior del restaurante,
+   del patio colonial, fuentes, o el ambiente.
+   Tamaño recomendado: 1920×900px
+   ════════════════════════════════════════════════ */
+#hero-nosotros::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,.75) 0%, rgba(0,0,0,.3) 100%),
+    url('AQUI_VA_FOTO_INTERIOR.jpg');   /* <── CAMBIA ESTO */
+  background-size:cover; background-position:center; z-index:1;
+}
+#hero-nosotros > *{ position:relative; z-index:2; }
+
+.hero-tag{
+  font-family:'Josefin Sans', sans-serif; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--oro-light); margin-bottom:1rem; font-size:.75rem;
+}
+.page-title{
+  font-family:'Playfair Display', serif; font-size:clamp(3rem,7vw,6rem);
+  color:white; line-height:.95;
+}
+.page-title em{ color:var(--terracotta-light); font-style:italic; }
+
+/* ─── SECTIONS ─── */
+section{ padding:6rem 4rem; }
+.section-label{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.25em; color:var(--terracotta); margin-bottom:1rem; font-size:.75rem;
+}
+.section-title{
+  font-family:'Playfair Display', serif; font-size:clamp(2rem,4vw,3.5rem); margin-bottom:2rem;
+}
+.section-title em{ color:var(--terracotta); }
+
+/* ─── HISTORIA ─── */
+#historia{
+  background:var(--dark); color:white;
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+}
+#historia .section-title{ color:var(--cream); }
+#historia p{ color:var(--cream-dark); font-size:1.1rem; line-height:1.9; margin-bottom:1.2rem; }
+
+/* ════════════════════════════════════════════════
+   🖼️  IMAGEN SECCIÓN HISTORIA
+   Foto del restaurante, fundadores, o cocina.
+   Tamaño recomendado: 700×900px  (vertical/retrato)
+   ════════════════════════════════════════════════ */
+.historia-img{
+  width:100%; aspect-ratio:3/4; object-fit:cover;
+  /* Si no tienes la imagen aún, el recuadro gris aparece como placeholder */
+}
+.historia-img-placeholder{
+  width:100%; aspect-ratio:3/4;
+  background:#2A1E18;
+  border:2px dashed rgba(196,146,42,.3);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
+}
+.placeholder-label{
+  font-family:'Josefin Sans', sans-serif; font-size:.7rem; letter-spacing:.2em;
+  text-transform:uppercase; color:rgba(196,146,42,.5); text-align:center; padding:0 2rem;
+}
+
+/* ─── VALORES / TARJETAS ─── */
+#valores{ background:var(--cream); }
+.valores-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem;
+}
+.valor-card{
+  padding:3rem 2rem; border:1px solid rgba(184,92,56,.15); text-align:center; transition:.3s;
+}
+.valor-card:hover{ background:var(--dark); border-color:var(--oro); }
+.valor-card:hover .valor-title, .valor-card:hover .valor-desc{ color:var(--cream); }
+.valor-icon{ font-size:2.5rem; margin-bottom:1.2rem; }
+.valor-title{ font-family:'Playfair Display', serif; font-size:1.3rem; margin-bottom:.6rem; color:var(--dark); transition:.3s; }
+.valor-desc{ font-size:1rem; color:#7A5C4A; line-height:1.7; transition:.3s; }
+
+/* ─── CTA BOTTOM ─── */
+#cta-nosotros{
+  background:var(--terracotta-dark); text-align:center; padding:5rem 4rem;
+}
+#cta-nosotros h2{
+  font-family:'Playfair Display', serif; font-size:clamp(2rem,4vw,3rem);
+  color:var(--cream); margin-bottom:1rem;
+}
+#cta-nosotros p{ color:var(--cream-dark); font-size:1.1rem; margin-bottom:2.5rem; }
+
+.btn-cream{
+  padding:1rem 2.5rem; text-decoration:none; display:inline-block;
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.15em; font-size:.75rem; transition:.25s;
+  background:var(--cream); color:var(--terracotta-dark); border:none; cursor:pointer;
+}
+.btn-cream:hover{ background:var(--cream-dark); }
+
+/* ─── WHATSAPP ─── */
+.whatsapp-float{
+  position:fixed; bottom:20px; right:20px; background:#25D366; color:white;
+  padding:14px 18px; border-radius:50px; text-decoration:none;
+  font-family:sans-serif; font-weight:bold; z-index:9999; box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#111; color:rgba(255,255,255,.5); padding:2rem; text-align:center;
+  font-family:'Josefin Sans', sans-serif; font-size:.75rem; letter-spacing:.15em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{ padding:1rem 1.5rem; } .nav-links{ gap:1rem; }
+  section{ padding:4rem 1.5rem; }
+  #historia{ grid-template-columns:1fr; }
+  .valores-grid, .equipo-grid{ grid-template-columns:1fr 1fr; }
+  .galeria-grid{ grid-template-columns:1fr 1fr; }
+  .galeria-item.wide{ grid-column:span 1; }
+  #hero-nosotros{ padding:5rem 1.5rem 3rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">La Hacienda · Cumbres</a>
+  <ul class="nav-links">
+    <li><a href="nosotros.html" class="active">Nosotros</a></li>
+    <li><a href="menu.html">Menú</a></li>
+    <li><a href="index.html#reservar">Reservar</a></li>
+    <li><a href="index.html#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<!-- ─── HERO ─── -->
+<div id="hero-nosotros">
+  <div>
+    <p class="hero-tag">Quiénes somos</p>
+    <h1 class="page-title">Tradición <em>Mexicana</em><br>desde Cumbres</h1>
+  </div>
+</div>
+
+
+<!-- ─── HISTORIA ─── -->
+<section id="historia">
+
+  <!-- ════ IMAGEN HISTORIA ════
+       Reemplaza el bloque placeholder por:
+       <img src="TU_FOTO.jpg" alt="Historia La Hacienda" class="historia-img">
+       ════════════════════════ -->
+  <div class="historia-img-placeholder">
+    <span style="font-size:2.5rem;">📸</span>
+    <p class="placeholder-label">
+      Aquí va una foto del restaurante,<br>
+      fundadores o cocina<br>
+      <strong style="color:rgba(196,146,42,.6);">700×900px recomendado</strong>
+    </p>
+  </div>
+
+  <div>
+    <p class="section-label">Nuestra Historia</p>
+    <h2 class="section-title">Un sabor que <em>se hereda</em></h2>
+    <p>
+      En La Hacienda Cumbres encontrarás auténtica cocina mexicana, tacos,
+      cortes y parrilladas servidas en un ambiente cálido y familiar que
+      refleja la esencia del norte de México.
+    </p>
+    <p>
+      Nuestro patio colonial y nuestro sabor norteño hacen de cada visita
+      una experiencia especial para disfrutar con familia y amigos.
+      Antojitos mexicanos y parrilladas servidas en un alegre comedor con
+      fuentes y plantas.
+    </p>
+    <p>
+      Desde nuestra apertura hemos servido a cientos de familias regiomontanas
+      con la misma pasión y calidez que nos caracteriza.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- ─── VALORES ─── -->
+<section id="valores">
+  <p class="section-label">Lo que nos define</p>
+  <h2 class="section-title">Nuestra <em>esencia</em></h2>
+
+  <div class="valores-grid">
+
+    <div class="valor-card">
+      <div class="valor-icon">🌮</div>
+      <h3 class="valor-title">Tradición</h3>
+      <p class="valor-desc">Recetas heredadas que preservan el sabor auténtico de la cocina mexicana norteña.</p>
+    </div>
+
+    <div class="valor-card">
+      <div class="valor-icon">🏛️</div>
+      <h3 class="valor-title">Ambiente</h3>
+      <p class="valor-desc">Patio colonial con fuentes y plantas que crea una atmósfera cálida y acogedora.</p>
+    </div>
+
+    <div class="valor-card">
+      <div class="valor-icon">❤️</div>
+      <h3 class="valor-title">Hospitalidad</h3>
+      <p class="valor-desc">Atención personalizada y un espacio inclusivo donde todos son bienvenidos.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- ─── CTA ─── -->
+<section id="cta-nosotros">
+  <h2>¿Listo para visitarnos?</h2>
+  <p>Reserva tu mesa y vive la experiencia La Hacienda.</p>
+  <a href="index.html#reservar" class="btn-cream">Hacer una Reservación</a>
+</section>
+
+
+<!-- ─── WHATSAPP ─── -->
+<a href="https://wa.me/528148236549" target="_blank" class="whatsapp-float">WhatsApp</a>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  © 2025 La Hacienda Cumbres · Monterrey, Nuevo León
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="./logo.png">
+<title>La Hacienda Cumbres – Restaurante Mexicano</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --terracotta:#B85C38;
+  --terracotta-dark:#8C3E20;
+  --terracotta-light:#E8956D;
+  --cream:#F5EDD8;
+  --cream-dark:#EBD9B4;
+  --verde:#3A6B35;
+  --oro:#C4922A;
+  --oro-light:#E0B04A;
+  --dark:#1E1410;
+  --text:#3D2B1F;
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+  font-family:'Cormorant Garamond', serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ─── NAV ─── */
+
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 4rem;
+  background:rgba(30,20,16,.95);
+  backdrop-filter:blur(10px);
+}
+
+.nav-logo{
+  color:var(--oro-light); text-decoration:none;
+  font-family:'Playfair Display', serif; font-size:1.3rem;
+}
+
+.nav-links{ list-style:none; display:flex; gap:2rem; }
+
+.nav-links a{
+  text-decoration:none; color:var(--cream);
+  font-family:'Josefin Sans', sans-serif;
+  font-size:.75rem; letter-spacing:.15em; text-transform:uppercase;
+  transition:.2s;
+}
+.nav-links a:hover{ color:var(--oro-light); }
+.nav-links a.active{ color:var(--oro-light); border-bottom:1px solid var(--oro-light); padding-bottom:2px; }
+
+/* ─── HERO ─── */
+
+#hero{
+  min-height:100vh;
+  display:flex; justify-content:center; align-items:center; flex-direction:column;
+  text-align:center; color:white; padding:2rem;
+  position:relative; overflow:hidden;
+}
+
+/* ════════════════════════════════════════════════
+   🖼️  IMAGEN DE FONDO DEL HERO
+   Reemplaza la URL de abajo con la foto principal
+   del restaurante (fachada, patio, ambiente, etc.)
+   Tamaño recomendado: 1920×1080px o más grande
+   ════════════════════════════════════════════════ */
+#hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
+    url('AQUI_VA_TU_FOTO_PRINCIPAL.jpg');  /* <── CAMBIA ESTO */
+  background-size:cover;
+  background-position:center;
+  z-index:1;
+}
+
+/* ════════════════════════════════════════════════
+   🖼️  LOGO EN MARCA DE AGUA (detrás del texto)
+   El archivo logo.png debe estar en la misma
+   carpeta que este index.html
+   ════════════════════════════════════════════════ */
+#hero::after{
+  content:"";
+  position:absolute; inset:0;
+  background:url('logo.png');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:550px;
+  opacity:.12; z-index:2;
+}
+
+#hero > *{ position:relative; z-index:3; }
+
+.hero-tag{
+  font-family:'Josefin Sans', sans-serif;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--oro-light); margin-bottom:1rem; font-size:.75rem;
+}
+
+.hero-title{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(3rem,8vw,7rem); line-height:.95;
+  letter-spacing:.08em; text-shadow:0 4px 20px rgba(0,0,0,.5);
+}
+.hero-title em{ color:var(--terracotta-light); font-style:italic; }
+
+.hero-subtitle{
+  max-width:700px; margin-top:1.5rem; margin-bottom:2.5rem;
+  font-size:1.25rem; color:var(--cream-dark);
+}
+
+.hero-buttons{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+/* ─── LOGO encima del título ─── */
+
+/* ════════════════════════════════════════════════
+   🖼️  LOGO VISIBLE ARRIBA DEL TÍTULO
+   Este <img src="logo.png"> ya apunta a logo.png
+   Solo asegúrate de tener ese archivo en la carpeta
+   ════════════════════════════════════════════════ */
+
+/* ─── BOTONES ─── */
+
+.btn-primary, .btn-outline{
+  padding:1rem 2.2rem; text-decoration:none;
+  font-family:'Josefin Sans', sans-serif;
+  text-transform:uppercase; letter-spacing:.15em; font-size:.75rem;
+  transition:.25s; border:none; cursor:pointer; display:inline-block;
+}
+.btn-primary{ background:var(--oro-light); color:black; }
+.btn-primary:hover{ background:var(--terracotta-light); }
+.btn-outline{ border:1px solid rgba(255,255,255,.4); color:white; }
+.btn-outline:hover{ border-color:var(--oro-light); color:var(--oro-light); }
+
+/* ─── SECCIONES ─── */
+
+section{ padding:6rem 4rem; }
+
+.section-label{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.25em; color:var(--terracotta); margin-bottom:1rem; font-size:.75rem;
+}
+.section-title{
+  font-family:'Playfair Display', serif;
+  font-size:clamp(2rem,5vw,4rem); margin-bottom:2rem;
+}
+.section-title em{ color:var(--terracotta); }
+
+/* ─── RESERVACIONES ─── */
+
+#reservar{ background:var(--dark); }
+#reservar .section-title{ color:white; }
+#reservar .section-label{ color:var(--oro-light); }
+
+.reservation-container{
+  display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-top:3rem;
+}
+
+.reservation-form{ display:flex; flex-direction:column; gap:1.4rem; }
+
+.form-group{ display:flex; flex-direction:column; gap:.5rem; }
+
+.form-label{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.18em; font-size:.68rem; color:var(--oro-light);
+}
+
+.form-input, .form-select, .form-textarea{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--cream);
+  padding:.85rem 1rem;
+  font-family:'Cormorant Garamond', serif; font-size:1rem;
+  outline:none; transition:.2s; width:100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus{ border-color:var(--oro); }
+.form-input::placeholder, .form-textarea::placeholder{ color:rgba(245,237,216,.3); }
+.form-select option{ background:var(--dark); color:var(--cream); }
+.form-textarea{ resize:vertical; min-height:100px; }
+
+.time-slots{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem; margin-top:.4rem;
+}
+
+.time-slot{
+  padding:.6rem; text-align:center;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--cream-dark);
+  font-family:'Josefin Sans', sans-serif; font-size:.72rem; letter-spacing:.05em;
+  cursor:pointer; transition:.2s; user-select:none;
+}
+.time-slot:hover:not(.unavailable){ border-color:var(--oro); color:var(--oro-light); }
+.time-slot.selected{ background:var(--oro); border-color:var(--oro); color:var(--dark); font-weight:600; }
+.time-slot.unavailable{ opacity:.28; cursor:not-allowed; text-decoration:line-through; }
+
+.slot-legend{ display:flex; gap:1.5rem; margin-top:1rem; }
+.legend-item{
+  display:flex; align-items:center; gap:.5rem;
+  font-family:'Josefin Sans', sans-serif; font-size:.65rem; letter-spacing:.1em;
+  color:rgba(245,237,216,.45);
+}
+.legend-dot{ width:10px; height:10px; border:1px solid; }
+.legend-dot.available{ border-color:rgba(255,255,255,.3); }
+.legend-dot.selected-dot{ background:var(--oro); border-color:var(--oro); }
+.legend-dot.unavailable-dot{ border-color:rgba(255,255,255,.15); opacity:.4; }
+
+.reservation-info{
+  border-left:1px solid rgba(255,255,255,.1); padding-left:4rem;
+}
+.res-info-block{ margin-bottom:2.5rem; }
+.res-info-title{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.2em; font-size:.68rem; color:var(--oro); margin-bottom:.8rem;
+}
+.res-info-text{ color:rgba(245,237,216,.6); font-size:1rem; line-height:1.8; }
+
+.res-schedule{ display:flex; flex-direction:column; gap:.5rem; }
+.res-schedule-row{
+  display:flex; justify-content:space-between; font-size:.95rem;
+  padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,.07); color:rgba(245,237,216,.65);
+}
+.res-schedule-row span:last-child{ color:var(--oro-light); }
+
+.res-confirm{
+  background:rgba(196,146,42,.12); border:1px solid rgba(196,146,42,.3);
+  padding:1.5rem; margin-top:2.5rem; display:none;
+}
+.res-confirm.show{ display:block; }
+.res-confirm-title{
+  font-family:'Playfair Display', serif; font-size:1.1rem;
+  color:var(--oro-light); margin-bottom:.8rem;
+}
+.res-confirm-details{ font-size:.9rem; color:rgba(245,237,216,.7); line-height:2; }
+
+.form-error{
+  font-family:'Josefin Sans', sans-serif; font-size:.65rem;
+  letter-spacing:.1em; color:#e87c7c; margin-top:.3rem; display:none;
+}
+.form-error.show{ display:block; }
+
+/* ─── CONTACTO ─── */
+
+#contact{ background:var(--cream); display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+
+.info-block{ margin-bottom:2rem; }
+.info-label{
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase;
+  letter-spacing:.2em; color:var(--terracotta); margin-bottom:.5rem; font-size:.75rem;
+}
+.info-value{ font-size:1.1rem; line-height:1.8; }
+
+.social-links{ display:flex; gap:1rem; margin-top:2rem; }
+.social-link{
+  text-decoration:none; border:1px solid rgba(0,0,0,.2);
+  padding:.7rem 1.3rem; color:var(--dark);
+  font-family:'Josefin Sans', sans-serif; text-transform:uppercase; font-size:.75rem;
+}
+.social-link:hover{ border-color:var(--oro); color:var(--terracotta); }
+
+/* ─── WHATSAPP FLOTANTE ─── */
+
+.whatsapp-float{
+  position:fixed; bottom:20px; right:20px;
+  background:#25D366; color:white;
+  padding:14px 18px; border-radius:50px;
+  text-decoration:none; font-family:sans-serif; font-weight:bold;
+  z-index:9999; box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+/* ─── FOOTER ─── */
+
+footer{
+  background:#111; color:rgba(255,255,255,.5);
+  padding:2rem; text-align:center;
+  font-family:'Josefin Sans', sans-serif; font-size:.75rem; letter-spacing:.15em;
+}
+
+/* ─── RESPONSIVE ─── */
+
+@media(max-width:900px){
+  nav{ padding:1rem 1.5rem; }
+  .nav-links{ gap:1rem; }
+  section{ padding:5rem 1.5rem; }
+  #contact, .reservation-container{ grid-template-columns:1fr; }
+  .reservation-info{ border-left:none; padding-left:0; border-top:1px solid rgba(255,255,255,.1); padding-top:2.5rem; }
+  .hero-title{ font-size:4rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">La Hacienda · Cumbres</a>
+  <ul class="nav-links">
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="menu.html">Menú</a></li>
+    <li><a href="#reservar">Reservar</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+
+  <!-- ════════════════════════════════════════════════
+       🖼️  LOGO PRINCIPAL
+       Archivo: logo.png  (en la misma carpeta)
+       Si tu logo tiene otro nombre cámbialo aquí ↓
+       ════════════════════════════════════════════════ -->
+  <img
+    src="logo.png"
+    alt="La Hacienda Cumbres"
+    style="
+      width:320px; max-width:70vw; margin-bottom:20px; display:block;
+      filter:drop-shadow(0 8px 20px rgba(0,0,0,.45));
+    "
+  >
+
+  <p class="hero-tag">Monterrey · Nuevo León</p>
+
+  <h1 class="hero-title">LA HACIENDA</h1>
+
+  <div style="width:120px;height:2px;background:#E0B04A;margin:25px auto;"></div>
+
+  <p class="hero-subtitle">
+    Tradición, sabor y hospitalidad que se heredan en cada platillo.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="#reservar" class="btn-primary">Reservar Mesa</a>
+    <a href="menu.html" class="btn-outline">Ver Menú</a>
+  </div>
+
+</section>
+
+
+<!-- ─── RESERVAR ─── -->
+<section id="reservar">
+
+  <p class="section-label">Reservaciones</p>
+  <h2 class="section-title">Asegura tu <em>mesa</em></h2>
+
+  <div class="reservation-container">
+
+    <!-- FORMULARIO -->
+    <div class="reservation-form">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input class="form-input" id="res-name" type="text" placeholder="Tu nombre completo">
+          <span class="form-error" id="err-name">Por favor ingresa tu nombre.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono</label>
+          <input class="form-input" id="res-phone" type="tel" placeholder="81 XXXX XXXX">
+          <span class="form-error" id="err-phone">Ingresa un número válido.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-input" id="res-email" type="email" placeholder="correo@ejemplo.com">
+        <span class="form-error" id="err-email">Ingresa un correo válido.</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;">
+        <div class="form-group">
+          <label class="form-label">Fecha</label>
+          <input class="form-input" id="res-date" type="date">
+          <span class="form-error" id="err-date">Selecciona una fecha.</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Personas</label>
+          <select class="form-select" id="res-guests">
+            <option value="">¿Cuántos?</option>
+            <option value="1">1 persona</option>
+            <option value="2">2 personas</option>
+            <option value="3">3 personas</option>
+            <option value="4">4 personas</option>
+            <option value="5">5 personas</option>
+            <option value="6">6 personas</option>
+            <option value="7">7 personas</option>
+            <option value="8">8+ personas</option>
+          </select>
+          <span class="form-error" id="err-guests">Indica cuántas personas.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Hora disponible</label>
+        <div class="time-slots" id="time-slots-container"></div>
+        <span class="form-error" id="err-time">Selecciona un horario.</span>
+        <div class="slot-legend">
+          <div class="legend-item"><div class="legend-dot available"></div> Disponible</div>
+          <div class="legend-item"><div class="legend-dot selected-dot"></div> Seleccionada</div>
+          <div class="legend-item"><div class="legend-dot unavailable-dot"></div> No disponible</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Notas especiales (opcional)</label>
+        <textarea class="form-textarea" id="res-notes" placeholder="Alergias, ocasión especial, zona preferida…"></textarea>
+      </div>
+
+      <button class="btn-primary" onclick="submitReservation()" style="margin-top:.5rem;">
+        Confirmar Reservación
+      </button>
+
+      <div class="res-confirm" id="res-confirm">
+        <p class="res-confirm-title">✓ ¡Reservación recibida!</p>
+        <div class="res-confirm-details" id="res-confirm-details"></div>
+        <p style="font-size:.85rem;color:rgba(245,237,216,.4);margin-top:1rem;font-style:italic;">
+          Recibirás confirmación al número proporcionado. Para cambios llama al 81 4823 6549.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- PANEL DE INFO -->
+    <div class="reservation-info">
+
+      <div class="res-info-block">
+        <p class="res-info-title">Horarios de Servicio</p>
+        <div class="res-schedule">
+          <div class="res-schedule-row"><span>Lunes – Martes</span><span>Cerrado</span></div>
+          <div class="res-schedule-row"><span>Miércoles – Sábado</span><span>1PM – 11PM</span></div>
+          <div class="res-schedule-row"><span>Domingo</span><span>1PM – 6PM</span></div>
+        </div>
+      </div>
+
+      <div class="res-info-block">
+        <p class="res-info-title">Política de Reservaciones</p>
+        <p class="res-info-text">
+          Las reservaciones se confirman por WhatsApp al número proporcionado.<br><br>
+          Tenemos un tiempo de cortesía de <strong style="color:var(--oro-light);">15 minutos</strong>. Pasado ese tiempo, la mesa podría asignarse a otro comensal.<br><br>
+          Para grupos de 8 o más personas, te contactaremos para coordinar el evento.
+        </p>
+      </div>
+
+      <div class="res-info-block">
+        <p class="res-info-title">¿Prefieres llamar?</p>
+        <p class="res-info-text">
+          <a href="tel:8148236549" style="color:var(--oro-light);text-decoration:none;">81 4823 6549</a><br>
+          o escríbenos por<br>
+          <a href="https://wa.me/528148236549" target="_blank" style="color:var(--terracotta-light);text-decoration:none;">WhatsApp →</a>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─── CONTACTO ─── -->
+<section id="contact">
+
+  <div>
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">Visítanos <em>Hoy</em></h2>
+
+    <div class="info-block">
+      <p class="info-label">Dirección</p>
+      <p class="info-value">
+        Av Paseo de los Leones 1150<br>
+        Cumbres 2do Sector<br>
+        Monterrey, Nuevo León
+      </p>
+    </div>
+
+    <div class="info-block">
+      <p class="info-label">Horarios</p>
+      <p class="info-value">
+        Miércoles – Sábado: 1PM – 11PM<br>
+        Domingo: 1PM – 6PM
+      </p>
+    </div>
+
+    <div class="info-block">
+      <p class="info-label">Teléfono</p>
+      <p class="info-value">
+        <a href="tel:8148236549">81 4823 6549</a>
+      </p>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <a href="https://wa.me/528148236549" target="_blank" class="btn-primary">
+        Reservar por WhatsApp
+      </a>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/lahaciendacumbres/" target="_blank" class="social-link">Instagram</a>
+      <a href="https://www.facebook.com/lahaciendacumbres/" target="_blank" class="social-link">Facebook</a>
+    </div>
+  </div>
+
+  <div>
+    <iframe
+      src="https://maps.google.com/maps?q=La%20Hacienda%20Cumbres%20Monterrey&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="450"
+      style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+</section>
+
+
+<!-- ─── WHATSAPP FLOTANTE ─── -->
+<a href="https://wa.me/528148236549" target="_blank" class="whatsapp-float">WhatsApp</a>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  © 2025 La Hacienda Cumbres · Monterrey, Nuevo León
+</footer>
+
+
+<script>
+// ══════════════════════════════════════════════════════
+//  CONFIGURACIÓN DE HORARIOS DEL RESTAURANTE
+//  Ajusta open/close (formato 24h) según tu horario real
+//  null = cerrado ese día
+//  0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles,
+//  4=Jueves, 5=Viernes, 6=Sábado
+// ══════════════════════════════════════════════════════
+const SCHEDULE = {
+  0: { open: 13, close: 18 },   // Domingo  1PM–6PM
+  1: null,                        // Lunes    cerrado
+  2: null,                        // Martes   cerrado
+  3: { open: 13, close: 23 },   // Miércoles
+  4: { open: 13, close: 23 },   // Jueves
+  5: { open: 13, close: 23 },   // Viernes
+  6: { open: 13, close: 23 },   // Sábado
+};
+
+const SLOT_INTERVAL = 30; // minutos entre cada slot
+
+// Slots marcados como llenos (HH:MM en 24h)
+// Puedes cambiar esto por una llamada a tu backend
+const UNAVAILABLE = ['13:00','13:30','20:00','20:30'];
+
+// ── init fecha mínima ──
+const dateInput = document.getElementById('res-date');
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm   = String(today.getMonth()+1).padStart(2,'0');
+const dd   = String(today.getDate()).padStart(2,'0');
+dateInput.min = `${yyyy}-${mm}-${dd}`;
+dateInput.addEventListener('change', buildTimeSlots);
+
+let selectedTime = null;
+
+function buildTimeSlots() {
+  const container = document.getElementById('time-slots-container');
+  container.innerHTML = '';
+  selectedTime = null;
+
+  const val = dateInput.value;
+  if (!val) return;
+
+  const [y, mo, d] = val.split('-').map(Number);
+  const dow = new Date(y, mo - 1, d).getDay();
+  const sched = SCHEDULE[dow];
+
+  if (!sched) {
+    container.innerHTML = '<p style="color:rgba(245,237,216,.4);font-family:\'Josefin Sans\',sans-serif;font-size:.72rem;letter-spacing:.1em;">Estamos cerrados ese día.</p>';
+    return;
+  }
+
+  const isToday = val === `${yyyy}-${mm}-${dd}`;
+  const nowH = today.getHours(), nowM = today.getMinutes();
+  const lastSlotHour = sched.close - 1;
+
+  for (let h = sched.open; h <= lastSlotHour; h++) {
+    const maxMin = (h === lastSlotHour) ? 1 : 60;
+    for (let m = 0; m < maxMin; m += SLOT_INTERVAL) {
+      const hStr = String(h).padStart(2,'0');
+      const mStr = String(m).padStart(2,'0');
+      const key  = `${hStr}:${mStr}`;
+      const isPast = isToday && (h < nowH || (h === nowH && m <= nowM));
+      const isUnavail = UNAVAILABLE.includes(key) || isPast;
+
+      const slot = document.createElement('div');
+      slot.className = 'time-slot' + (isUnavail ? ' unavailable' : '');
+      slot.textContent = formatTime(h, m);
+      slot.dataset.time  = key;
+      slot.dataset.label = formatTime(h, m);
+      if (!isUnavail) slot.addEventListener('click', () => selectSlot(slot));
+      container.appendChild(slot);
+    }
+  }
+}
+
+function selectSlot(el) {
+  document.querySelectorAll('.time-slot.selected').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedTime = { key: el.dataset.time, label: el.dataset.label };
+}
+
+function formatTime(h, m) {
+  const suffix = h >= 12 ? 'PM' : 'AM';
+  const h12 = h > 12 ? h - 12 : (h === 0 ? 12 : h);
+  return `${h12}:${String(m).padStart(2,'0')} ${suffix}`;
+}
+
+function submitReservation() {
+  document.querySelectorAll('.form-error').forEach(e => e.classList.remove('show'));
+  const name   = document.getElementById('res-name').value.trim();
+  const phone  = document.getElementById('res-phone').value.trim();
+  const email  = document.getElementById('res-email').value.trim();
+  const date   = document.getElementById('res-date').value;
+  const guests = document.getElementById('res-guests').value;
+  const notes  = document.getElementById('res-notes').value.trim();
+  let valid = true;
+
+  if (!name)  { document.getElementById('err-name').classList.add('show');  valid = false; }
+  if (!phone || phone.replace(/\D/g,'').length < 8) { document.getElementById('err-phone').classList.add('show'); valid = false; }
+  if (!email || !email.includes('@')) { document.getElementById('err-email').classList.add('show'); valid = false; }
+  if (!date)   { document.getElementById('err-date').classList.add('show');   valid = false; }
+  if (!guests) { document.getElementById('err-guests').classList.add('show'); valid = false; }
+  if (!selectedTime) { document.getElementById('err-time').classList.add('show'); valid = false; }
+  if (!valid) return;
+
+  const [y, mo, d] = date.split('-').map(Number);
+  const dateObj = new Date(y, mo - 1, d);
+  const days   = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  const niceDate = `${days[dateObj.getDay()]} ${d} de ${months[mo-1]} de ${y}`;
+
+  document.getElementById('res-confirm-details').innerHTML = `
+    <strong style="color:var(--cream);">Nombre:</strong> ${name}<br>
+    <strong style="color:var(--cream);">Fecha:</strong> ${niceDate}<br>
+    <strong style="color:var(--cream);">Hora:</strong> ${selectedTime.label}<br>
+    <strong style="color:var(--cream);">Personas:</strong> ${guests === '8' ? '8+' : guests}<br>
+    <strong style="color:var(--cream);">Teléfono:</strong> ${phone}<br>
+    ${notes ? `<strong style="color:var(--cream);">Notas:</strong> ${notes}` : ''}
+  `;
+  document.getElementById('res-confirm').classList.add('show');
+  document.getElementById('res-confirm').scrollIntoView({ behavior:'smooth', block:'nearest' });
+
+  const msg = encodeURIComponent(
+    `Hola La Hacienda Cumbres, quiero reservar:\n`+
+    `• Nombre: ${name}\n• Fecha: ${niceDate}\n• Hora: ${selectedTime.label}\n`+
+    `• Personas: ${guests === '8' ? '8+' : guests}\n• Tel: ${phone}\n`+
+    (notes ? `• Notas: ${notes}` : '')
+  );
+  setTimeout(() => { window.open(`https://wa.me/528148236549?text=${msg}`, '_blank'); }, 1200);
+}
+</script>
+
+</body>
+</html>
